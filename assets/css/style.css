@@ -1,17 +1,5 @@
-@font-face {
-  font-family: 'cache';
-  src:  url('./Cache-Regular.ttf') format('truetype');
-} 
-
-@font-face {
-  font-family: 'avenir';
-  src: url('./AvenirLTStd-Roman.otf');
-}
-
 * {
   box-sizing: border-box;
-  border: 2px dotted rgba(255, 255, 0, 0.5);
-  background-color: rgba(187, 50, 205, 0.123);
 }
 
 :root {
@@ -20,7 +8,6 @@
   --tertiary: rgb(192, 246, 253);
   --grey: #333;
   font-size: 62.5%;
-  
 }
 
 body {
@@ -31,7 +18,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  font-family: avenir;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 header {
@@ -85,10 +72,7 @@ footer {
   color: var(--primary);
   margin-bottom: 5px;
   margin-top: 0;
-  font-size: 6rem;
-  letter-spacing: 1rem;
-  font-family: cache;
-  font-weight: normal;
+  font-size: 4.5rem;
 }
 
 .page-content {
