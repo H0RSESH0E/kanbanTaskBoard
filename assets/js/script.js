@@ -232,12 +232,12 @@ var deleteTask = function(taskId) {
 
 var saveTasks = function() {
 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("taskinatorTasks", JSON.stringify(tasks));
 
 }
 
 var loadTasks = function() {
-    var savedTasks = localStorage.getItem("tasks");
+    var savedTasks = localStorage.getItem("taskinatorTasks");
   
     if (!savedTasks) {
       tasks = [];
