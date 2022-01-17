@@ -151,7 +151,7 @@ var taskStatusChangeHandler = function(event) {
 
   // convert value to lower case
   var statusValue = event.target.value.toLowerCase();
-
+console.log(statusValue);
   if (statusValue === "to do") {
     tasksToDoEl.appendChild(taskSelected);
   } else if (statusValue === "in progress") {
@@ -159,7 +159,7 @@ var taskStatusChangeHandler = function(event) {
   } else if (statusValue === "completed") {
     tasksCompletedEl.appendChild(taskSelected);
   }
-
+console.log(tasks.length," is tasks.length");
     // update task's in tasks array
     for (var i = 0; i < tasks.length; i++) {
         if (tasks[i].id === parseInt(taskId)) {
@@ -216,6 +216,51 @@ var saveTasks = function() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
 }
+
+var loadTasks = function() {
+
+    if (!localStorage.getItem("tasks")) {
+        tasks = []
+    }
+    else {
+        tasks = localStorage.getItem("tasks");
+    }
+
+console.log(tasks);
+tasks = JSON.parse(tasks)
+console.log(tasks);
+
+    for (i = 0; i < tasks.length; i++) {
+        tasks[i].id = i;
+        var listItemEl = document.createElement("li");
+        listItemEl.className = "task-item";
+        listItemEl.setAttribute("data-task-id", tasks[i].id);
+
+        var taskInfoEl = document.createElement("div");
+        taskInfoEl.className = "task-info";
+        taskInfoEl.innerHTML = "<h3 class='task-name'>" + tasks[i].name + "</h3><span class='task-type'>" + tasks[i].type + "</span>";
+        listItemEl.appendChild(taskInfoEl);
+        
+        var taskActionsEl = createTaskActions(i);
+    listItemEl.appendChild(taskActionsEl);
+    tasksToDoEl.appendChild(listItemEl);
+
+    var statusValue = tasks[i].status;
+
+        if (statusValue === "to do") {
+        tasksToDoEl.appendChild(listItemEl);
+        } 
+        else if (statusValue === "in progress") {
+        tasksInProgressEl.appendChild(listItemEl);
+        } 
+        else if (statusValue === "completed") {
+        tasksCompletedEl.appendChild(listItemEl);
+        }
+    
+    }
+}
+
+loadTasks();
 
 // Create a new task
 formEl.addEventListener("submit", taskFormHandler);
